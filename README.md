@@ -1,2 +1,3 @@
 # avg
-Average service
+
+An average service.
