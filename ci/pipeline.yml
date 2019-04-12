@@ -1,0 +1,117 @@
+resource_types:
+  - name: git-semver-tag
+    type: docker-image
+    source:
+      repository: laurentverbruggen/concourse-git-semver-tag-resource
+  - name: pull-request
+    type: docker-image
+    source:
+      repository: teliaoss/github-pr-resource
+
+resources:
+  - name: src
+    type: git
+    check_every: 24h
+    webhook_token: ((git-webhook-token))
+    source: &git
+      uri: git@github.com:((git-repo)).git
+      private_key: ((git-private-key))
+      branch: master
+  - name: pr
+    type: pull-request
+    check_every: 24h
+    webhook_token: ((git-webhook-token))
+    source:
+      repository: ((git-repo))
+      access_token: ((git-access-token))
+  - name: img
+    type: docker-image
+    source:
+      repository: ((git-repo))
+      username: ((docker-user))
+      password: ((docker-pass))
+  - name: version
+    type: git-semver-tag
+    source:
+      <<: *git
+      initial_version: 0.1.0
+  - name: alpine-image
+    type: docker-image
+    source:
+      repository: alpine
+      tag: 3.9
+
+jobs:
+  - name: build
+    serial: true
+    plan:
+      - get: src
+        trigger: true
+      - get: version
+        params: { bump: auto }
+      - put: img
+        params:
+          tag_file: version/number
+          build: src
+        get_params: { skip_download: true }
+      - put: version
+        params: { file: version/number }
+  - name: build-pr
+    serial: true
+    on_success:
+      put: pr
+      params:
+        path: pr
+        status: success
+      get_params: { skip_download: true }
+    on_failure:
+      put: pr
+      params:
+        path: pr
+        status: failure
+      get_params: { skip_download: true }
+    on_abort:
+      put: pr
+      params:
+        path: pr
+        status: failure
+        comment: Pipeline was manually aborted.
+      get_params: { skip_download: true }
+    plan:
+      - get: pr
+        version: every
+        trigger: true
+      - put: pr
+        params:
+          path: pr
+          status: pending
+        get_params: { skip_download: true }
+      - get: alpine-image
+      - task: get-pr-number
+        image: alpine-image
+        input_mapping: { pr: pr }
+        output_mapping: {version: version}
+        config:
+          platform: linux
+          inputs: [{name: pr}]
+          outputs: [{name: version}]
+          run:
+            path: /bin/sh
+            args:
+              - -xe
+              - -c
+              - |
+                #!/bin/sh
+                apk add --no-cache jq
+                pr=$(jq '.pr' < pr/metadata.json)
+                echo "pr-$(pr)" > version/number
+      - put: img
+        params:
+          tag_file: version/number
+          build: src
+        get_params: { skip_download: true }
+      - put: pr
+        params:
+          path: pr
+          status: success
+        get_params: { skip_download: true }
