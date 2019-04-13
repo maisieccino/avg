@@ -6,6 +6,7 @@ package avg;
 service Greeter {
   // Calculates mean average
   rpc Mean (IntArrayGreeting) returns (FloatReply) {}
+  rpc Range (IntArrayGreeting) returns (IntReply) {}
 }
 
 message IntArrayGreeting {
