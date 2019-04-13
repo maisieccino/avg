@@ -1,12 +1,21 @@
 resource_types:
-  - name: git-semver-tag
-    type: docker-image
-    source:
-      repository: laurentverbruggen/concourse-git-semver-tag-resource
   - name: pull-request
     type: docker-image
     source:
       repository: teliaoss/github-pr-resource
+
+groups:
+  - name: dev
+    jobs:
+      - build-dev
+  - name: pr
+    jobs:
+      - pr-build-img
+  - name: release
+    jobs:
+      - release-patch
+      - release-minor
+      - release-major
 
 resources:
   - name: src
@@ -31,24 +40,38 @@ resources:
       username: ((docker-user))
       password: ((docker-pass))
   - name: version
-    type: git-semver-tag
+    type: semver
     source:
-      <<: *git
-      initial_version: 0.1.0
+      driver: gcs
+      bucket: avg.bell.wtf
+      key: version
+      json_key: ((gcs-json-key))
+      inital-version: 0.1.0
+  - name: golang-image
+    type: docker-image
+    source:
+      repository: golang
+      tag: 1.11-alpine
   - name: alpine-image
     type: docker-image
     source:
       repository: alpine
       tag: 3.9
+  - name: gh-release
+    type: github-release
+    source:
+      owner: mbellgb
+      repository: avg
+      access_token: ((git-access-token))
 
 jobs:
-  - name: build
+  - name: build-dev
     serial: true
     plan:
       - get: src
         trigger: true
       - get: version
-        params: { bump: auto }
+        params: { pre: dev }
       - put: img
         params:
           tag_file: version/number
@@ -56,7 +79,7 @@ jobs:
         get_params: { skip_download: true }
       - put: version
         params: { file: version/number }
-  - name: build-pr
+  - name: pr-build-img
     serial: true
     on_success:
       put: pr
@@ -115,3 +138,126 @@ jobs:
           path: pr
           status: success
         get_params: { skip_download: true }
+  - name: release-patch
+    serial: true
+    plan:
+      - get: version
+        params: { bump: patch }
+      - get: old_version
+        resource: version
+      - get: src
+      - get: img
+      - get: golang-image
+      - task: build-client-linux
+        image: golang-image
+        file: src/ci/tasks/build-client.yml
+        output_mapping: { output: client-linux }
+        params:
+          os: linux
+          arch: amd64
+          version_file: version/number
+      - task: build-client-darwin
+        image: golang-image
+        file: src/ci/tasks/build-client.yml
+        output_mapping: { output: client-darwin }
+        params:
+          os: darwin
+          arch: amd64
+          version_file: version/number
+      - put: img
+        params:
+          tag_file: version/number
+          build: src
+          cache: true
+          cache_tag: old_version
+      - put: gh-release
+        params:
+          name: version/number
+          tag: version/number
+          commitish: src/.git/ref
+          body: src/changelog.md
+          globs: [ client-linux/avg-*, client-darwin/avg-* ]
+      - put: version
+        params: { file: version/number }
+  - name: release-minor
+    serial: true
+    plan:
+      - get: version
+        params: { bump: minor }
+      - get: old_version
+        resource: version
+      - get: src
+      - get: img
+      - get: golang-image
+      - task: build-client-linux
+        image: golang-image
+        file: src/ci/tasks/build-client.yml
+        output_mapping: { output: client-linux }
+        params:
+          os: linux
+          arch: amd64
+          version_file: version/number
+      - task: build-client-darwin
+        image: golang-image
+        file: src/ci/tasks/build-client.yml
+        output_mapping: { output: client-darwin }
+        params:
+          os: darwin
+          arch: amd64
+          version_file: version/number
+      - put: img
+        params:
+          tag_file: version/number
+          build: src
+          cache: true
+          cache_tag: old_version
+      - put: gh-release
+        params:
+          name: version/number
+          tag: version/number
+          commitish: src/.git/ref
+          body: src/changelog.md
+          globs: [ client-linux/avg-*, client-darwin/avg-* ]
+      - put: version
+        params: { file: version/number }
+  - name: release-major
+    serial: true
+    plan:
+      - get: version
+        params: { bump: major }
+      - get: old_version
+        resource: version
+      - get: src
+      - get: img
+      - get: golang-image
+      - task: build-client-linux
+        image: golang-image
+        file: src/ci/tasks/build-client.yml
+        output_mapping: { output: client-linux }
+        params:
+          os: linux
+          arch: amd64
+          version_file: version/number
+      - task: build-client-darwin
+        image: golang-image
+        file: src/ci/tasks/build-client.yml
+        output_mapping: { output: client-darwin }
+        params:
+          os: darwin
+          arch: amd64
+          version_file: version/number
+      - put: img
+        params:
+          tag_file: version/number
+          build: src
+          cache: true
+          cache_tag: old_version
+      - put: gh-release
+        params:
+          name: version/number
+          tag: version/number
+          commitish: src/.git/ref
+          body: src/changelog.md
+          globs: [ client-linux/avg-*, client-darwin/avg-* ]
+      - put: version
+        params: { file: version/number }
