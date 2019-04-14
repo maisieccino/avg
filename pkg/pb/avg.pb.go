@@ -24,156 +24,156 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type IntArrayGreeting struct {
+type IntArrayRequest struct {
 	Data                 []int32  `protobuf:"varint,1,rep,packed,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *IntArrayGreeting) Reset()         { *m = IntArrayGreeting{} }
-func (m *IntArrayGreeting) String() string { return proto.CompactTextString(m) }
-func (*IntArrayGreeting) ProtoMessage()    {}
-func (*IntArrayGreeting) Descriptor() ([]byte, []int) {
+func (m *IntArrayRequest) Reset()         { *m = IntArrayRequest{} }
+func (m *IntArrayRequest) String() string { return proto.CompactTextString(m) }
+func (*IntArrayRequest) ProtoMessage()    {}
+func (*IntArrayRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b889feec73713d05, []int{0}
 }
 
-func (m *IntArrayGreeting) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_IntArrayGreeting.Unmarshal(m, b)
+func (m *IntArrayRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_IntArrayRequest.Unmarshal(m, b)
 }
-func (m *IntArrayGreeting) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_IntArrayGreeting.Marshal(b, m, deterministic)
+func (m *IntArrayRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_IntArrayRequest.Marshal(b, m, deterministic)
 }
-func (m *IntArrayGreeting) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_IntArrayGreeting.Merge(m, src)
+func (m *IntArrayRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_IntArrayRequest.Merge(m, src)
 }
-func (m *IntArrayGreeting) XXX_Size() int {
-	return xxx_messageInfo_IntArrayGreeting.Size(m)
+func (m *IntArrayRequest) XXX_Size() int {
+	return xxx_messageInfo_IntArrayRequest.Size(m)
 }
-func (m *IntArrayGreeting) XXX_DiscardUnknown() {
-	xxx_messageInfo_IntArrayGreeting.DiscardUnknown(m)
+func (m *IntArrayRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_IntArrayRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_IntArrayGreeting proto.InternalMessageInfo
+var xxx_messageInfo_IntArrayRequest proto.InternalMessageInfo
 
-func (m *IntArrayGreeting) GetData() []int32 {
+func (m *IntArrayRequest) GetData() []int32 {
 	if m != nil {
 		return m.Data
 	}
 	return nil
 }
 
-type IntReply struct {
+type IntResponse struct {
 	Result               int32    `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *IntReply) Reset()         { *m = IntReply{} }
-func (m *IntReply) String() string { return proto.CompactTextString(m) }
-func (*IntReply) ProtoMessage()    {}
-func (*IntReply) Descriptor() ([]byte, []int) {
+func (m *IntResponse) Reset()         { *m = IntResponse{} }
+func (m *IntResponse) String() string { return proto.CompactTextString(m) }
+func (*IntResponse) ProtoMessage()    {}
+func (*IntResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b889feec73713d05, []int{1}
 }
 
-func (m *IntReply) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_IntReply.Unmarshal(m, b)
+func (m *IntResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_IntResponse.Unmarshal(m, b)
 }
-func (m *IntReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_IntReply.Marshal(b, m, deterministic)
+func (m *IntResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_IntResponse.Marshal(b, m, deterministic)
 }
-func (m *IntReply) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_IntReply.Merge(m, src)
+func (m *IntResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_IntResponse.Merge(m, src)
 }
-func (m *IntReply) XXX_Size() int {
-	return xxx_messageInfo_IntReply.Size(m)
+func (m *IntResponse) XXX_Size() int {
+	return xxx_messageInfo_IntResponse.Size(m)
 }
-func (m *IntReply) XXX_DiscardUnknown() {
-	xxx_messageInfo_IntReply.DiscardUnknown(m)
+func (m *IntResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_IntResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_IntReply proto.InternalMessageInfo
+var xxx_messageInfo_IntResponse proto.InternalMessageInfo
 
-func (m *IntReply) GetResult() int32 {
+func (m *IntResponse) GetResult() int32 {
 	if m != nil {
 		return m.Result
 	}
 	return 0
 }
 
-type FloatArrayGreeting struct {
+type FloatArrayRequest struct {
 	Data                 []float32 `protobuf:"fixed32,1,rep,packed,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
 	XXX_unrecognized     []byte    `json:"-"`
 	XXX_sizecache        int32     `json:"-"`
 }
 
-func (m *FloatArrayGreeting) Reset()         { *m = FloatArrayGreeting{} }
-func (m *FloatArrayGreeting) String() string { return proto.CompactTextString(m) }
-func (*FloatArrayGreeting) ProtoMessage()    {}
-func (*FloatArrayGreeting) Descriptor() ([]byte, []int) {
+func (m *FloatArrayRequest) Reset()         { *m = FloatArrayRequest{} }
+func (m *FloatArrayRequest) String() string { return proto.CompactTextString(m) }
+func (*FloatArrayRequest) ProtoMessage()    {}
+func (*FloatArrayRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b889feec73713d05, []int{2}
 }
 
-func (m *FloatArrayGreeting) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_FloatArrayGreeting.Unmarshal(m, b)
+func (m *FloatArrayRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FloatArrayRequest.Unmarshal(m, b)
 }
-func (m *FloatArrayGreeting) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_FloatArrayGreeting.Marshal(b, m, deterministic)
+func (m *FloatArrayRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FloatArrayRequest.Marshal(b, m, deterministic)
 }
-func (m *FloatArrayGreeting) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_FloatArrayGreeting.Merge(m, src)
+func (m *FloatArrayRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FloatArrayRequest.Merge(m, src)
 }
-func (m *FloatArrayGreeting) XXX_Size() int {
-	return xxx_messageInfo_FloatArrayGreeting.Size(m)
+func (m *FloatArrayRequest) XXX_Size() int {
+	return xxx_messageInfo_FloatArrayRequest.Size(m)
 }
-func (m *FloatArrayGreeting) XXX_DiscardUnknown() {
-	xxx_messageInfo_FloatArrayGreeting.DiscardUnknown(m)
+func (m *FloatArrayRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_FloatArrayRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_FloatArrayGreeting proto.InternalMessageInfo
+var xxx_messageInfo_FloatArrayRequest proto.InternalMessageInfo
 
-func (m *FloatArrayGreeting) GetData() []float32 {
+func (m *FloatArrayRequest) GetData() []float32 {
 	if m != nil {
 		return m.Data
 	}
 	return nil
 }
 
-type FloatReply struct {
+type FloatResponse struct {
 	Result               float32  `protobuf:"fixed32,1,opt,name=result,proto3" json:"result,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *FloatReply) Reset()         { *m = FloatReply{} }
-func (m *FloatReply) String() string { return proto.CompactTextString(m) }
-func (*FloatReply) ProtoMessage()    {}
-func (*FloatReply) Descriptor() ([]byte, []int) {
+func (m *FloatResponse) Reset()         { *m = FloatResponse{} }
+func (m *FloatResponse) String() string { return proto.CompactTextString(m) }
+func (*FloatResponse) ProtoMessage()    {}
+func (*FloatResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_b889feec73713d05, []int{3}
 }
 
-func (m *FloatReply) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_FloatReply.Unmarshal(m, b)
+func (m *FloatResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FloatResponse.Unmarshal(m, b)
 }
-func (m *FloatReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_FloatReply.Marshal(b, m, deterministic)
+func (m *FloatResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FloatResponse.Marshal(b, m, deterministic)
 }
-func (m *FloatReply) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_FloatReply.Merge(m, src)
+func (m *FloatResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FloatResponse.Merge(m, src)
 }
-func (m *FloatReply) XXX_Size() int {
-	return xxx_messageInfo_FloatReply.Size(m)
+func (m *FloatResponse) XXX_Size() int {
+	return xxx_messageInfo_FloatResponse.Size(m)
 }
-func (m *FloatReply) XXX_DiscardUnknown() {
-	xxx_messageInfo_FloatReply.DiscardUnknown(m)
+func (m *FloatResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_FloatResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_FloatReply proto.InternalMessageInfo
+var xxx_messageInfo_FloatResponse proto.InternalMessageInfo
 
-func (m *FloatReply) GetResult() float32 {
+func (m *FloatResponse) GetResult() float32 {
 	if m != nil {
 		return m.Result
 	}
@@ -181,29 +181,27 @@ func (m *FloatReply) GetResult() float32 {
 }
 
 func init() {
-	proto.RegisterType((*IntArrayGreeting)(nil), "avg.IntArrayGreeting")
-	proto.RegisterType((*IntReply)(nil), "avg.IntReply")
-	proto.RegisterType((*FloatArrayGreeting)(nil), "avg.FloatArrayGreeting")
-	proto.RegisterType((*FloatReply)(nil), "avg.FloatReply")
+	proto.RegisterType((*IntArrayRequest)(nil), "avg.IntArrayRequest")
+	proto.RegisterType((*IntResponse)(nil), "avg.IntResponse")
+	proto.RegisterType((*FloatArrayRequest)(nil), "avg.FloatArrayRequest")
+	proto.RegisterType((*FloatResponse)(nil), "avg.FloatResponse")
 }
 
 func init() { proto.RegisterFile("avg.proto", fileDescriptor_b889feec73713d05) }
 
 var fileDescriptor_b889feec73713d05 = []byte{
-	// 204 bytes of a gzipped FileDescriptorProto
+	// 170 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x4c, 0x2c, 0x4b, 0xd7,
-	0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x4e, 0x2c, 0x4b, 0x57, 0x52, 0xe3, 0x12, 0xf0, 0xcc,
-	0x2b, 0x71, 0x2c, 0x2a, 0x4a, 0xac, 0x74, 0x2f, 0x4a, 0x4d, 0x2d, 0xc9, 0xcc, 0x4b, 0x17, 0x12,
-	0xe2, 0x62, 0x49, 0x49, 0x2c, 0x49, 0x94, 0x60, 0x54, 0x60, 0xd6, 0x60, 0x0d, 0x02, 0xb3, 0x95,
-	0x94, 0xb8, 0x38, 0x3c, 0xf3, 0x4a, 0x82, 0x52, 0x0b, 0x72, 0x2a, 0x85, 0xc4, 0xb8, 0xd8, 0x8a,
-	0x52, 0x8b, 0x4b, 0x73, 0x4a, 0x24, 0x18, 0x15, 0x18, 0x35, 0x58, 0x83, 0xa0, 0x3c, 0x25, 0x0d,
-	0x2e, 0x21, 0xb7, 0x9c, 0xfc, 0x44, 0x3c, 0xa6, 0x31, 0x41, 0x4d, 0x53, 0xe1, 0xe2, 0x02, 0xab,
-	0xc4, 0x66, 0x1e, 0x13, 0xcc, 0x3c, 0xa3, 0x0b, 0x8c, 0x5c, 0xec, 0x60, 0x63, 0x52, 0x8b, 0x84,
-	0x0c, 0xb8, 0x58, 0x7c, 0x53, 0x13, 0xf3, 0x84, 0x44, 0xf5, 0x40, 0x1e, 0x40, 0x77, 0xb2, 0x14,
-	0x3f, 0x58, 0x18, 0x61, 0xa6, 0x12, 0x83, 0x90, 0x3e, 0x17, 0x6b, 0x50, 0x62, 0x5e, 0x7a, 0x2a,
-	0x2e, 0x2d, 0xbc, 0x30, 0x61, 0x98, 0x06, 0x23, 0x2e, 0x36, 0xdf, 0xd4, 0x94, 0x4c, 0x92, 0x2c,
-	0xd1, 0xe3, 0x62, 0xf1, 0xcd, 0x4f, 0x21, 0xda, 0x8e, 0x24, 0x36, 0x70, 0xd0, 0x1b, 0x03, 0x02,
-	0x00, 0x00, 0xff, 0xff, 0xcf, 0x52, 0x6e, 0xba, 0x87, 0x01, 0x00, 0x00,
+	0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x4e, 0x2c, 0x4b, 0x57, 0x52, 0xe5, 0xe2, 0xf7, 0xcc,
+	0x2b, 0x71, 0x2c, 0x2a, 0x4a, 0xac, 0x0c, 0x4a, 0x2d, 0x2c, 0x4d, 0x2d, 0x2e, 0x11, 0x12, 0xe2,
+	0x62, 0x49, 0x49, 0x2c, 0x49, 0x94, 0x60, 0x54, 0x60, 0xd6, 0x60, 0x0d, 0x02, 0xb3, 0x95, 0x54,
+	0xb9, 0xb8, 0x3d, 0xf3, 0x4a, 0x82, 0x52, 0x8b, 0x0b, 0xf2, 0xf3, 0x8a, 0x53, 0x85, 0xc4, 0xb8,
+	0xd8, 0x8a, 0x52, 0x8b, 0x4b, 0x73, 0x4a, 0x24, 0x18, 0x15, 0x18, 0x35, 0x58, 0x83, 0xa0, 0x3c,
+	0x25, 0x75, 0x2e, 0x41, 0xb7, 0x9c, 0xfc, 0x44, 0xdc, 0xe6, 0x31, 0x41, 0xcd, 0x53, 0xe7, 0xe2,
+	0x05, 0x2b, 0xc4, 0x61, 0x22, 0x13, 0xcc, 0x44, 0x23, 0x4b, 0x2e, 0x66, 0xc7, 0xb2, 0x74, 0x21,
+	0x23, 0x2e, 0x16, 0xdf, 0xd4, 0xc4, 0x3c, 0x21, 0x11, 0x3d, 0x90, 0xfb, 0xd1, 0x5c, 0x2c, 0x25,
+	0x04, 0x16, 0x45, 0x31, 0x50, 0x89, 0x21, 0x89, 0x0d, 0xec, 0x4d, 0x63, 0x40, 0x00, 0x00, 0x00,
+	0xff, 0xff, 0x26, 0x1e, 0xdc, 0x49, 0xf3, 0x00, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -214,182 +212,74 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// GreeterClient is the client API for Greeter service.
+// AvgClient is the client API for Avg service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type GreeterClient interface {
+type AvgClient interface {
 	// Calculates mean average
-	Mean(ctx context.Context, in *IntArrayGreeting, opts ...grpc.CallOption) (*FloatReply, error)
-	Range(ctx context.Context, in *IntArrayGreeting, opts ...grpc.CallOption) (*IntReply, error)
-	Median(ctx context.Context, in *IntArrayGreeting, opts ...grpc.CallOption) (*FloatReply, error)
-	Mode(ctx context.Context, in *IntArrayGreeting, opts ...grpc.CallOption) (*IntReply, error)
+	Mean(ctx context.Context, in *IntArrayRequest, opts ...grpc.CallOption) (*FloatResponse, error)
 }
 
-type greeterClient struct {
+type avgClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewGreeterClient(cc *grpc.ClientConn) GreeterClient {
-	return &greeterClient{cc}
+func NewAvgClient(cc *grpc.ClientConn) AvgClient {
+	return &avgClient{cc}
 }
 
-func (c *greeterClient) Mean(ctx context.Context, in *IntArrayGreeting, opts ...grpc.CallOption) (*FloatReply, error) {
-	out := new(FloatReply)
-	err := c.cc.Invoke(ctx, "/avg.Greeter/Mean", in, out, opts...)
+func (c *avgClient) Mean(ctx context.Context, in *IntArrayRequest, opts ...grpc.CallOption) (*FloatResponse, error) {
+	out := new(FloatResponse)
+	err := c.cc.Invoke(ctx, "/avg.Avg/Mean", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *greeterClient) Range(ctx context.Context, in *IntArrayGreeting, opts ...grpc.CallOption) (*IntReply, error) {
-	out := new(IntReply)
-	err := c.cc.Invoke(ctx, "/avg.Greeter/Range", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *greeterClient) Median(ctx context.Context, in *IntArrayGreeting, opts ...grpc.CallOption) (*FloatReply, error) {
-	out := new(FloatReply)
-	err := c.cc.Invoke(ctx, "/avg.Greeter/Median", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *greeterClient) Mode(ctx context.Context, in *IntArrayGreeting, opts ...grpc.CallOption) (*IntReply, error) {
-	out := new(IntReply)
-	err := c.cc.Invoke(ctx, "/avg.Greeter/Mode", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// GreeterServer is the server API for Greeter service.
-type GreeterServer interface {
+// AvgServer is the server API for Avg service.
+type AvgServer interface {
 	// Calculates mean average
-	Mean(context.Context, *IntArrayGreeting) (*FloatReply, error)
-	Range(context.Context, *IntArrayGreeting) (*IntReply, error)
-	Median(context.Context, *IntArrayGreeting) (*FloatReply, error)
-	Mode(context.Context, *IntArrayGreeting) (*IntReply, error)
+	Mean(context.Context, *IntArrayRequest) (*FloatResponse, error)
 }
 
-// UnimplementedGreeterServer can be embedded to have forward compatible implementations.
-type UnimplementedGreeterServer struct {
+// UnimplementedAvgServer can be embedded to have forward compatible implementations.
+type UnimplementedAvgServer struct {
 }
 
-func (*UnimplementedGreeterServer) Mean(ctx context.Context, req *IntArrayGreeting) (*FloatReply, error) {
+func (*UnimplementedAvgServer) Mean(ctx context.Context, req *IntArrayRequest) (*FloatResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Mean not implemented")
 }
-func (*UnimplementedGreeterServer) Range(ctx context.Context, req *IntArrayGreeting) (*IntReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Range not implemented")
-}
-func (*UnimplementedGreeterServer) Median(ctx context.Context, req *IntArrayGreeting) (*FloatReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Median not implemented")
-}
-func (*UnimplementedGreeterServer) Mode(ctx context.Context, req *IntArrayGreeting) (*IntReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Mode not implemented")
+
+func RegisterAvgServer(s *grpc.Server, srv AvgServer) {
+	s.RegisterService(&_Avg_serviceDesc, srv)
 }
 
-func RegisterGreeterServer(s *grpc.Server, srv GreeterServer) {
-	s.RegisterService(&_Greeter_serviceDesc, srv)
-}
-
-func _Greeter_Mean_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IntArrayGreeting)
+func _Avg_Mean_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IntArrayRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GreeterServer).Mean(ctx, in)
+		return srv.(AvgServer).Mean(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/avg.Greeter/Mean",
+		FullMethod: "/avg.Avg/Mean",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GreeterServer).Mean(ctx, req.(*IntArrayGreeting))
+		return srv.(AvgServer).Mean(ctx, req.(*IntArrayRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Greeter_Range_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IntArrayGreeting)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GreeterServer).Range(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/avg.Greeter/Range",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GreeterServer).Range(ctx, req.(*IntArrayGreeting))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Greeter_Median_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IntArrayGreeting)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GreeterServer).Median(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/avg.Greeter/Median",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GreeterServer).Median(ctx, req.(*IntArrayGreeting))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Greeter_Mode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IntArrayGreeting)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GreeterServer).Mode(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/avg.Greeter/Mode",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GreeterServer).Mode(ctx, req.(*IntArrayGreeting))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-var _Greeter_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "avg.Greeter",
-	HandlerType: (*GreeterServer)(nil),
+var _Avg_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "avg.Avg",
+	HandlerType: (*AvgServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Mean",
-			Handler:    _Greeter_Mean_Handler,
-		},
-		{
-			MethodName: "Range",
-			Handler:    _Greeter_Range_Handler,
-		},
-		{
-			MethodName: "Median",
-			Handler:    _Greeter_Median_Handler,
-		},
-		{
-			MethodName: "Mode",
-			Handler:    _Greeter_Mode_Handler,
+			Handler:    _Avg_Mean_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
