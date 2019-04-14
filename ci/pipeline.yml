@@ -108,12 +108,9 @@ jobs:
         params:
           path: pr
           status: pending
-        get_params: { skip_download: true }
       - get: alpine-image
       - task: get-pr-number
         image: alpine-image
-        input_mapping: { pr: pr }
-        output_mapping: {version: version}
         config:
           platform: linux
           inputs: [{name: pr}]
@@ -126,17 +123,12 @@ jobs:
               - |
                 #!/bin/sh
                 apk add --no-cache jq
-                pr=$(jq '.pr' < pr/metadata.json)
-                echo "pr-$(pr)" > version/number
+                pr=$(jq -r '.[] | select(.name == "pr") | .value' < pr/.git/resource/metadata.json)
+                echo "pr-${pr}" > version/number
       - put: img
         params:
           tag_file: version/number
-          build: src
-        get_params: { skip_download: true }
-      - put: pr
-        params:
-          path: pr
-          status: success
+          build: pr
         get_params: { skip_download: true }
   - name: release-patch
     serial: true
