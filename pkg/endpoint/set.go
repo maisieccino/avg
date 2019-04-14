@@ -2,6 +2,7 @@ package endpoint
 
 import (
 	"context"
+	"errors"
 	"github.com/go-kit/kit/endpoint"
 	pb "github.com/mbellgb/avg/pkg/pb"
 	service "github.com/mbellgb/avg/pkg/svc"
@@ -37,7 +38,21 @@ func (s *Set) Mean(ctx context.Context, values []int32) (float32, error) {
 func MakeMeanEndpoint(svc service.Service) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
 		req := request.(pb.IntArrayRequest)
-		result, _ := svc.Mean(ctx, req.Data)
-		return pb.FloatResponse{Result: result}, nil
+		result, err := svc.Mean(ctx, req.Data)
+		return pb.FloatResponse{Result: result, Error: errToStr(err)}, nil
 	}
+}
+
+func strToErr(str string) error {
+	if str == "" {
+		return nil
+	}
+	return errors.New(str)
+}
+
+func errToStr(err error) string {
+	if err == nil {
+		return ""
+	}
+	return err.Error()
 }

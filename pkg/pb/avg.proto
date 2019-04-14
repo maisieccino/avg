@@ -17,6 +17,7 @@ message IntArrayRequest {
 
 message IntResponse {
   int32 result = 1;
+  string error = 2;
 }
 
 message FloatArrayRequest {
@@ -25,4 +26,5 @@ message FloatArrayRequest {
 
 message FloatResponse {
   float result = 1;
+  string error = 2;
 }
