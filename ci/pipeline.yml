@@ -147,6 +147,7 @@ jobs:
         resource: version
       - get: src
       - get: img
+        tag_file: old_version/number
       - get: golang-image
       - task: build-client-linux
         image: golang-image
@@ -169,7 +170,6 @@ jobs:
           tag_file: version/number
           build: src
           cache: true
-          cache_tag: old_version
       - put: gh-release
         params:
           name: version/number
