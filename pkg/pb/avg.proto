@@ -7,6 +7,8 @@ service Greeter {
   // Calculates mean average
   rpc Mean (IntArrayGreeting) returns (FloatReply) {}
   rpc Range (IntArrayGreeting) returns (IntReply) {}
+  rpc Median (IntArrayGreeting) returns (FloatReply) {}
+  rpc Mode (IntArrayGreeting) returns (IntReply) {}
 }
 
 message IntArrayGreeting {

@@ -4,18 +4,18 @@ resource_types:
     source:
       repository: teliaoss/github-pr-resource
 
-groups:
-  - name: dev
-    jobs:
-      - build-dev
-  - name: pr
-    jobs:
-      - pr-build-img
-  - name: release
-    jobs:
-      - release-patch
-      - release-minor
-      - release-major
+# groups:
+#   - name: dev
+#     jobs:
+#       - build-dev
+#   - name: pr
+#     jobs:
+#       - pr-build-img
+#   - name: release
+#     jobs:
+#       - release-patch
+#       - release-minor
+#       - release-major
 
 resources:
   - name: src
@@ -108,12 +108,9 @@ jobs:
         params:
           path: pr
           status: pending
-        get_params: { skip_download: true }
       - get: alpine-image
       - task: get-pr-number
         image: alpine-image
-        input_mapping: { pr: pr }
-        output_mapping: {version: version}
         config:
           platform: linux
           inputs: [{name: pr}]
@@ -126,28 +123,21 @@ jobs:
               - |
                 #!/bin/sh
                 apk add --no-cache jq
-                pr=$(jq '.pr' < pr/metadata.json)
-                echo "pr-$(pr)" > version/number
+                pr=$(jq -r '.[] | select(.name == "pr") | .value' < pr/.git/resource/metadata.json)
+                echo "pr-${pr}" > version/number
       - put: img
         params:
           tag_file: version/number
-          build: src
-        get_params: { skip_download: true }
-      - put: pr
-        params:
-          path: pr
-          status: success
+          build: pr
         get_params: { skip_download: true }
   - name: release-patch
     serial: true
     plan:
       - get: version
+        passed: [build-dev]
         params: { bump: patch }
-      - get: old_version
-        resource: version
       - get: src
       - get: img
-        tag_file: old_version/number
       - get: golang-image
       - task: build-client-linux
         image: golang-image
@@ -183,9 +173,8 @@ jobs:
     serial: true
     plan:
       - get: version
+        passed: [build-dev]
         params: { bump: minor }
-      - get: old_version
-        resource: version
       - get: src
       - get: img
       - get: golang-image
@@ -207,10 +196,9 @@ jobs:
           version_file: version/number
       - put: img
         params:
-          tag_file: version/number
           build: src
+          tag_file: version/number
           cache: true
-          cache_tag: old_version
       - put: gh-release
         params:
           name: version/number
@@ -224,9 +212,8 @@ jobs:
     serial: true
     plan:
       - get: version
+        passed: [build-dev]
         params: { bump: major }
-      - get: old_version
-        resource: version
       - get: src
       - get: img
       - get: golang-image
@@ -248,10 +235,9 @@ jobs:
           version_file: version/number
       - put: img
         params:
-          tag_file: version/number
           build: src
+          tag_file: version/number
           cache: true
-          cache_tag: old_version
       - put: gh-release
         params:
           name: version/number
