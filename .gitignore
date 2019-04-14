@@ -13,3 +13,6 @@
 
 ci/vars.yml
 ci/key*
+
+avg
+avg-server

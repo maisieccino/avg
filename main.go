@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
+	"github.com/mbellgb/avg/cmd/server"
 )
 
 func main() {
-	fmt.Println("avg")
+	server.Execute()
 }
