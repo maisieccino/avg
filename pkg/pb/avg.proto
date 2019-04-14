@@ -3,26 +3,26 @@ syntax = "proto3";
 package avg;
 
 // The greeting service definition.
-service Greeter {
+service Avg {
   // Calculates mean average
-  rpc Mean (IntArrayGreeting) returns (FloatReply) {}
-  rpc Range (IntArrayGreeting) returns (IntReply) {}
-  rpc Median (IntArrayGreeting) returns (FloatReply) {}
-  rpc Mode (IntArrayGreeting) returns (IntReply) {}
+  rpc Mean (IntArrayRequest) returns (FloatResponse) {}
+  // rpc Range (IntArrayRequest) returns (IntResponse) {}
+  // rpc Median (IntArrayRequest) returns (IntResponse) {}
+  // rpc Mode (IntArrayRequest) returns (IntResponse) {}
 }
 
-message IntArrayGreeting {
+message IntArrayRequest {
   repeated int32 data = 1;
 }
 
-message IntReply {
+message IntResponse {
   int32 result = 1;
 }
 
-message FloatArrayGreeting {
+message FloatArrayRequest {
   repeated float data = 1;
 }
 
-message FloatReply {
+message FloatResponse {
   float result = 1;
 }
