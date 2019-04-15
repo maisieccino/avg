@@ -1,4 +1,4 @@
-package server
+package main
 
 import (
 	"fmt"
@@ -60,8 +60,7 @@ func initConfig() {
 	viper.AutomaticEnv()
 }
 
-// Execute runs the root command
-func Execute() {
+func main() {
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)

@@ -26,20 +26,20 @@ func New(svc service.Service) Set {
 
 // Mean calculates the mean
 func (s *Set) Mean(ctx context.Context, values []int32) (float32, error) {
-	resp, err := s.MeanEndpoint(ctx, pb.IntArrayRequest{Data: values})
+	resp, err := s.MeanEndpoint(ctx, &pb.IntArrayRequest{Data: values})
 	if err != nil {
 		return 0, err
 	}
-	response := resp.(pb.FloatResponse)
+	response := resp.(*pb.FloatResponse)
 	return response.Result, nil
 }
 
 // MakeMeanEndpoint creates endplint object
 func MakeMeanEndpoint(svc service.Service) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
-		req := request.(pb.IntArrayRequest)
+		req := request.(*pb.IntArrayRequest)
 		result, err := svc.Mean(ctx, req.Data)
-		return pb.FloatResponse{Result: result, Error: errToStr(err)}, nil
+		return &pb.FloatResponse{Result: result, Error: errToStr(err)}, nil
 	}
 }
 
