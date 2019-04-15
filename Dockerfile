@@ -14,7 +14,7 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go test ./...
 
 FROM base as builder
 RUN ./hack/verify_codegen.sh
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /bin/avg-server
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /bin/avg-server ./cmd/server
 
 FROM alpine
 ENV SITE_DIR /usr/share/www

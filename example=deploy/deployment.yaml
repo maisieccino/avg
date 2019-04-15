@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: avg
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: avg
+  template:
+    metadata:
+      labels:
+        app: avg
+    spec:
+      containers:
+        - name: avg
+          image: mbellgb/avg:0.4.0
+          ports:
+          - containerPort: 2222
+            name: grpc
