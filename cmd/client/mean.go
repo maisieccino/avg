@@ -12,8 +12,9 @@ import (
 )
 
 var meanCmd = &cobra.Command{
-	Use:   "mean [VALUES...]",
-	Short: "Calculate mean average of values",
+	Use:     "mean [VALUES...]",
+	Short:   "Calculate mean average of values",
+	Example: "avg mean 1 2 3 4",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("Calculating average for ", args)
 		url := cmd.Flags().Lookup("url").Value.String()

@@ -40,3 +40,18 @@ pkg/
 `hack` - code generation scripts
 
 `pkg/pb` - protobuf defintion and go bindings
+
+## Server
+
+`docker run mbellgb/avg:<version>` where `<version>` is the latest version of
+`avg` service.
+
+You can also specify `-p` to choose a port (default: 2222) and `-h` to define
+what IP to bind to (default: `0.0.0.0`)
+
+## Client
+
+Download the [release](https://github.com/mbellgb/avg/releases) for your
+platform and version.
+
+`avg --help` will give you a list of commands and how to use them.
