@@ -17,7 +17,8 @@ RUN ./hack/verify_codegen.sh
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /bin/avg-server ./cmd/server
 
 FROM alpine
-ENV SITE_DIR /usr/share/www
+ENV AVG_PORT "2222"
+ENV AVG_HOST "0.0.0.0"
 RUN apk add --no-cache ca-certificates
 COPY --from=builder /bin/avg-server /bin/avg-server
 ENTRYPOINT [ "/bin/avg-server" ]
