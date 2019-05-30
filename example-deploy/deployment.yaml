@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: avg
-          image: mbellgb/avg:0.4.0
+          image: mbellgb/avg:1.0.0
           ports:
           - containerPort: 2222
             name: grpc
